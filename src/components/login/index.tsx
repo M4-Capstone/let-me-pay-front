@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { ILogin } from "../../interfaces/interfaces";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../schemas/schemas";
+import logo from "../../assets/img/logo.png"
 
 const LoginForm = () => {
   const {
@@ -22,7 +23,7 @@ const LoginForm = () => {
   return (
     <Container>
       <div>
-        <img src="" alt="Logo" />
+        <img src={logo} alt="Logo" />
         <StyledForm>
           <form onSubmit={handleSubmit(login)}>
             <div className="container-login">
