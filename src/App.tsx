@@ -1,11 +1,11 @@
 import React from "react";
-import GlobalStlye from "./styles/globalStlyes";
+import GlobalStyle from "./styles/globalStyles";
 import Routes from "./routes";
 
 function App() {
   return (
     <>
-      <GlobalStlye />
+      <GlobalStyle/>
       <Routes />
     </>
   );
