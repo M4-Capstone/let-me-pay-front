@@ -1,15 +1,17 @@
-import React, { createContext, useState } from "react";
+import { createContext,ReactNode, useState } from "react";
 import { IUser } from "../../interfaces/interfaces";
 
-type Props = {
-    children: React.ReactNode
+interface IProps {
+    children: ReactNode
 };
 
+interface IUserContextType{
+    user: IUser
+    setUser: (newState: IUser)=> void
+}
 
-export const UserContext = createContext({})
-
-export const UserProvider = ({children}:Props)=>{
-    const [user, setUser] = useState({
+const defaultState = {
+    user:{
         documentId: "48662238807",
         name: "Antoniel Mariano",
         email: "antonielcamposm@gmail.com",
@@ -31,7 +33,13 @@ export const UserProvider = ({children}:Props)=>{
             createdAt: "2022-09-11T03:06:26.297Z",
             updatedAt: "2022-09-11T03:06:26.297Z"
         }
-    })
+    },
+    setUser: ()=> {}
+  };
+
+export const UserContext = createContext<IUserContextType>(defaultState)
+export const UserProvider = ({children}:IProps)=>{
+    const [user, setUser] = useState<IUser>(defaultState.user as IUser)
 
     return <UserContext.Provider value={{user, setUser}}>{children}</UserContext.Provider>
 }

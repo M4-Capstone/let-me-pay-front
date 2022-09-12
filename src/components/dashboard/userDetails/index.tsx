@@ -1,25 +1,20 @@
-import { useContext } from "react"
-import { UserContext } from "../../../context/userContext"
-import { StyledSection } from "./styles"
-
-
+import { ButtonTransaction, DivIcon, StyledSection } from "./styles"
+import { TbEdit } from "react-icons/tb" 
+import UserInfo from "./components/userInfo"
+import UserAddress from "./components/addresInfo"
 
 const UserDetails = ()=>{
 
-    const {user}:any = useContext(UserContext)
-
-    const{
-        documentId,
-        name,
-        email,
-        isActive,
-        createdAt,
-        updatedAt,
-        address,
-        wallet} = user
-
     return(
         <StyledSection>
+
+            <DivIcon><TbEdit size={30}/></DivIcon>
+
+            <UserInfo/>
+
+            <UserAddress/>
+
+            <ButtonTransaction>TRANSAÇÃO</ButtonTransaction>
 
         </StyledSection>
     )
