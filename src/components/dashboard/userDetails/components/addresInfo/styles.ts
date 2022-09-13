@@ -29,15 +29,22 @@ export const FirstDivAddress =styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
+    div{
+        height: 32px;
+    }
 `
 
 export const SecondDivAddress =styled.div`
     display: flex;
     flex-direction: column;
     gap: 20px;
+    div{
+        height: 32px;
+    }
 `
 
 export const InfoAddress = styled.h5`
     color: #8A8A8A;
     font-weight: 500;
+    width: 90px;
 `

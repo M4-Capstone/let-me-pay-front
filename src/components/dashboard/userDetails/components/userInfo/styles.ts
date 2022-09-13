@@ -19,6 +19,7 @@ export const StyledDiv = styled.div`
     width: 80%;
     align-self: center;
     flex-direction: column;
+    height: 88px;
     border-bottom: 3px solid #C9FFC9;
     gap: 10px;
 `
@@ -49,7 +50,11 @@ export const DivInfo = styled.div`
     `)}
 `
 
-export const BalanceDiv = styled.div`
+interface IProps{
+    showData:boolean
+}
+
+export const BalanceDiv = styled.div<IProps>`
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -61,10 +66,13 @@ export const BalanceDiv = styled.div`
     `)}
 
     div{
-        background-color: #C9FFC9;
+        background-color:  ${({showData})=> showData ? "#C9FFC9": "transparent"};
         border-radius: 5px;
+        height: 25px;
         width: 100px;
-        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     button{
