@@ -10,7 +10,7 @@ import { UserContext } from "../context/userContext";
 const Dashboard = () => {
 
   const token = localStorage.getItem("@tokenLMP")
-  const {user, setUser} = useContext(UserContext)
+  const { setUser } = useContext(UserContext)
   const [showInfo, setShowInfo] = useState(false)
 
   useEffect(()=>{
