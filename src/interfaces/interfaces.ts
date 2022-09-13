@@ -3,6 +3,7 @@ export interface ILogin {
   password: string;
 }
 
+
 export interface IRegister {
   cpf: string;
   nome: string;
@@ -16,3 +17,28 @@ export interface IRegister {
   password: string;
   confPassword?: string;
 }
+
+export interface IUser{
+  documentId: string
+  name: string
+  email: string
+  isActive: boolean
+  createdAt: string
+  updatedAt: string
+  address: {
+    id: string
+    neighbourhood: string
+    zipCode: string
+    street: string
+    number?: string
+    city: string
+    state: string
+  }
+  wallet: {
+    id: string
+    amount: string
+    createdAt: string
+    updatedAt: string
+  }
+}
+
