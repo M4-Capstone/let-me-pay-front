@@ -20,15 +20,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    width: 100vw;
-    height: 100vh;
     background-color: #C9FFC9;
     font-family: 'Inter', sans-serif;
-  }
-
-  #root { 
-    width: 100%;
-    height: 100%;
   }
 
   button{

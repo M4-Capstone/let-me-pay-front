@@ -13,34 +13,34 @@ const UserAddress = ()=>{
             <FirstDivAddress>
                 <div>
                     <h5>CEP:</h5>
-                    <InfoAddress>{address.zipCode}</InfoAddress>
+                    <InfoAddress>{address?.zipCode}</InfoAddress>
                 </div>
 
                 <div>
                     <h5>Número:</h5>
-                    <InfoAddress>{address.number}</InfoAddress>
+                    <InfoAddress>{address?.number}</InfoAddress>
                 </div>
 
                 <div>
                     <h5>Cidade:</h5>
-                    <InfoAddress>{address.city}</InfoAddress>
+                    <InfoAddress>{address?.city}</InfoAddress>
                 </div>
             </FirstDivAddress>
 
             <SecondDivAddress>
                 <div>
                     <h5>Rua:</h5>
-                    <InfoAddress>{address.street}</InfoAddress>
+                    <InfoAddress>{address?.street}</InfoAddress>
                 </div>
 
                 <div>
                     <h5>Bairro:</h5>
-                    <InfoAddress>{address.neighbourhood}</InfoAddress>
+                    <InfoAddress>{address?.neighbourhood}</InfoAddress>
                 </div>
 
                 <div>
                     <h5>Estado:</h5>
-                    <InfoAddress>{address.state}</InfoAddress>
+                    <InfoAddress>{address?.state}</InfoAddress>
                 </div>
             </SecondDivAddress>
             

@@ -13,8 +13,8 @@ const UserInfo = ()=>{
     }
 
     const indexToOcult= [3,4,5,6,7,8]
-    const idOcult = user?.documentId.split("")
-    const amountInBrl = parseFloat(user.wallet.amount).toLocaleString("pt-BR", {
+    const idOcult = user.documentId?.split("")
+    const amountInBrl = parseFloat(user.wallet?.amount).toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL"
     })
@@ -27,8 +27,8 @@ const UserInfo = ()=>{
         <StyledDiv>
 
             <DivName>
-                <h4>{user.name}</h4>
-                <h5>{user.email}</h5>
+                <h4>{user?.name}</h4>
+                <h5>{user?.email}</h5>
             </DivName>
 
             <DivInfo>

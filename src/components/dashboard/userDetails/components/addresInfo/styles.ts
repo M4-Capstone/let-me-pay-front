@@ -1,12 +1,28 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
+
+const medias = [
+    {
+        break: 280,
+        justifyContent: "space-around"
+    },
+    {   
+        break: 768,
+        justifyContent: "space-between"
+    },
+]
 
 export const StyledDiv = styled.div `
     display: flex;
     align-self: center;
     width: 80%;
-    justify-content: space-between;
     align-items: center;
     margin-top: 40px;
+
+    ${medias.map(media=> css`
+        @media(min-width: ${media.break}px){
+           justify-content: ${media.justifyContent};
+        }
+    `)}
 `
 
 export const FirstDivAddress =styled.div`

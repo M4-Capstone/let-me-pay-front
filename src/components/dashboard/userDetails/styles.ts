@@ -3,7 +3,9 @@ import styled from "styled-components";
 export const StyledSection = styled.section`
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 50%;
+    max-width: 450px;
+    min-width: 270px;
     border-radius: 20px;
     height: 480px;
     background-color: white;
