@@ -25,6 +25,7 @@ export interface IUser{
   isActive: boolean
   createdAt: string
   updatedAt: string
+  idOcult?: string
   address: {
     id: string
     neighbourhood: string

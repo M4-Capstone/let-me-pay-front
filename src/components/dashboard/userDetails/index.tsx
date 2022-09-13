@@ -3,16 +3,20 @@ import { TbEdit } from "react-icons/tb"
 import UserInfo from "./components/userInfo"
 import UserAddress from "./components/addresInfo"
 
-const UserDetails = ()=>{
+interface IProps{
+    showData:boolean 
+}
+
+const UserDetails = ({showData}:IProps)=>{
 
     return(
         <StyledSection>
 
             <DivIcon><TbEdit size={30}/></DivIcon>
 
-            <UserInfo/>
+            <UserInfo showData={showData}/>
 
-            <UserAddress/>
+            <UserAddress showData={showData}/>
 
             <ButtonTransaction>TRANSAÇÃO</ButtonTransaction>
 

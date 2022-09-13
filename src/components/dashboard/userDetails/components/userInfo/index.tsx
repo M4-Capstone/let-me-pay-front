@@ -1,45 +1,50 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../../../../../context/userContext"
 import { BalanceDiv, DivInfo, DivName, StyledDiv } from "./styles"
 import { BiShow,BiHide } from "react-icons/bi"
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
-const UserInfo = ()=>{
+
+interface IProps{
+    showData:boolean 
+}
+
+
+const UserInfo = ({showData}:IProps)=>{
 
     const {user} = useContext(UserContext)
-    const [showInfo, setShowInfo] = useState(false)
+    const [showInfoUser, setShowInfoUser] = useState(false)
 
     const toggleInfo = ()=>{
-        setShowInfo(!showInfo)
+        setShowInfoUser(!showInfoUser)
     }
-
-    const indexToOcult= [3,4,5,6,7,8]
-    const idOcult = user.documentId?.split("")
     const amountInBrl = parseFloat(user.wallet?.amount).toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL"
     })
 
-    for(let i = 0; i < indexToOcult.length; i++){
-        idOcult[indexToOcult[i]] = "*"
-    }
+
 
     return(
         <StyledDiv>
 
             <DivName>
-                <h4>{user?.name}</h4>
-                <h5>{user?.email}</h5>
+                <h4>{showData ? user?.name : <Skeleton height={20}/>}</h4>
+                <h5>{showData ? user?.email : <Skeleton height={16}/>}</h5>
             </DivName>
 
             <DivInfo>
 
-                {showInfo ? <h5>{user?.documentId}</h5> : <h5>{idOcult}</h5>}
+                {showData ? <h5>{showInfoUser ? user?.documentId : user?.idOcult}</h5> : <Skeleton width={88} height={16}/>}
 
-                <BalanceDiv>
+                <BalanceDiv showData={showData ? true : false}>
 
-                    <div>{showInfo ? <h5>{amountInBrl}</h5> : <h5>R$ ********</h5>}</div>
+                    <div>
+                        {showData ? <h5>{ showInfoUser ?  amountInBrl : "R$ ********"}</h5> : <Skeleton width={100} height={25}/>}
+                    </div> 
                     
-                    <button onClick={()=> toggleInfo()}>{showInfo ? <BiHide size={20}/> : <BiShow size={20}/>}</button>
+                    <button onClick={()=> toggleInfo()}>{showInfoUser ? <BiHide size={20}/> : <BiShow size={20}/>}</button>
                     
                 </BalanceDiv>           
             </DivInfo>

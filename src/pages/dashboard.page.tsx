@@ -11,7 +11,7 @@ const Dashboard = () => {
 
   const token = localStorage.getItem("@tokenLMP")
   const { setUser } = useContext(UserContext)
-  const [showInfo, setShowInfo] = useState(false)
+  const [showData, setShowData] = useState(false)
 
   useEffect(()=>{
     api.get("/profile", {
@@ -19,9 +19,20 @@ const Dashboard = () => {
         Authorization: `Bearer ${token}`,
       }})
       .then((res) => {
+        const indexToOcult= [3,4,5,6,7,8]
+        const idOcult = res.data.documentId?.split("")
+        for(let i = 0; i < indexToOcult.length; i++){
+          idOcult[indexToOcult[i]] = "*"
+      }
+
+        res.data.idOcult = idOcult
         setUser(res.data)
-        setShowInfo(true)
+
+        setTimeout(()=>{
+          setShowData(true)
+        }, 1000)
       })
+
   }, [])
 
   useEffect(()=>{
@@ -41,9 +52,7 @@ const Dashboard = () => {
       <Header/>
 
       <StyledMain>
-        {showInfo && <UserDetails/>}
-       
-
+        <UserDetails showData={showData}/>
       </StyledMain>
     </>
   );
