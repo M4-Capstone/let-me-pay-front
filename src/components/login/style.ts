@@ -17,6 +17,11 @@ export const Container = styled.div`
     background-color: white;
     padding: 20px 15px;
   }
+
+  .container {
+    box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+  }
 `;
 
 export const StyledForm = styled.div`

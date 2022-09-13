@@ -1,11 +1,13 @@
 import React from "react";
 import GlobalStyle from "./styles/globalStyles";
 import Routes from "./routes";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
     <>
-      <GlobalStyle/>
+      <Toaster />
+      <GlobalStyle />
       <Routes />
     </>
   );
