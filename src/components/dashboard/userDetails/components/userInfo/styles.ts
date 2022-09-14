@@ -38,16 +38,10 @@ export const DivName = styled.div`
 
 export const DivInfo = styled.div`
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
     gap: 10px;
-    
-    ${medias.map(media=> css`
-        @media(min-width: ${media.break}px){
-            flex-direction: ${media.flexDirection};
-            align-items: ${media.alignItems};
-        }
-    `)}
 `
 
 interface IProps{

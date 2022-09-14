@@ -1,15 +1,31 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
+
+const medias = [
+    {
+        break: 280,
+        width: 90
+    },
+    {
+        break: 768,
+        width: 50
+    },
+]
+
 
 export const StyledSection = styled.section`
     display: flex;
     flex-direction: column;
-    width: 50%;
     max-width: 450px;
     min-width: 270px;
     border-radius: 20px;
     height: 480px;
     background-color: white;
     gap: 20px;
+    ${medias.map(media => css`
+        @media(min-width: ${media.break}px){
+            width: ${media.width}%;
+        }
+    `)} 
  
 `
 

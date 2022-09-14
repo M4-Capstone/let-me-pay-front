@@ -1,10 +1,11 @@
 import Header from "../components/dashboard/header";
 import { Toaster,toast } from "react-hot-toast"
 import { useContext, useEffect, useState } from "react";
-import { StyledMain } from "./dashboard.styles";
+import { StyledMain, StyledSection } from "./dashboard.styles";
 import UserDetails from "../components/dashboard/userDetails";
 import api from "../services/api";
 import { UserContext } from "../context/userContext";
+import FilterTransaction from "../components/dashboard/filterTransaction";
 
 
 const Dashboard = () => {
@@ -52,7 +53,15 @@ const Dashboard = () => {
       <Header/>
 
       <StyledMain>
+
         <UserDetails showData={showData}/>
+
+        <StyledSection>
+
+          <FilterTransaction/>
+          
+        </StyledSection>
+
       </StyledMain>
     </>
   );
