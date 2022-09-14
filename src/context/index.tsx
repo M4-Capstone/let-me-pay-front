@@ -1,7 +1,8 @@
+import { ReactNode } from "react";
 import { UserProvider } from "./userContext";
 
 type Props = {
-    children: React.ReactNode
+    children: ReactNode
 };
 
 export const Providers = ({children}:Props)=>{

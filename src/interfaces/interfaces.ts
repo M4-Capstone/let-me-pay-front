@@ -42,9 +42,36 @@ export interface IUser {
   };
 }
 
-export interface IProps {
-  onPress: any;
-  src: any;
-  width: string;
-  height: string;
+
+export interface ITransaction{
+  id: string
+  amount: string
+  date: string
+  hour: string
+  receiverId: {
+    documentId: string
+    name: string
+    email: string
+    wallet: {
+      id: string
+      amount: string
+      createdAt: string
+      updatedAt: string
+    }
+  },
+  senderId: {
+    documentId: string
+    name: string
+    email: string
+    wallet: {
+      id: string
+      amount: string
+      createdAt: string
+      updatedAt: string
+    }
+  },
+  categoryType: {
+    id: number,
+    type: string
+  }
 }
