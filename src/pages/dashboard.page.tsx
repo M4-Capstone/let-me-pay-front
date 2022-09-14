@@ -6,6 +6,7 @@ import UserDetails from "../components/dashboard/userDetails";
 import api from "../services/api";
 import { UserContext } from "../context/userContext";
 import FilterTransaction from "../components/dashboard/filterTransaction";
+import CardsTransaction from "../components/dashboard/cardsTransaction";
 
 
 const Dashboard = () => {
@@ -13,6 +14,23 @@ const Dashboard = () => {
   const token = localStorage.getItem("@tokenLMP")
   const { setUser } = useContext(UserContext)
   const [showData, setShowData] = useState(false)
+  const [transactions, setTransactions] = useState<[]>([])
+
+  useEffect(()=>{
+    api.get("/history", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }})
+      .then((res) => {
+        setTransactions(res.data)
+        console.log(res.data)
+
+        setTimeout(()=>{
+          setShowData(true)
+        }, 1000)
+      })
+
+  }, [])
 
   useEffect(()=>{
     api.get("/profile", {
@@ -59,6 +77,8 @@ const Dashboard = () => {
         <StyledSection>
 
           <FilterTransaction/>
+
+          <CardsTransaction transactions={transactions}/>
           
         </StyledSection>
 
