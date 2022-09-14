@@ -4,10 +4,11 @@ import { ITransaction } from "../../../interfaces/interfaces"
 import { StyledDiv, StyledDivAmount, StyledDivUser, StyledSection, StyledUserEmail, StyledUserName } from "./styles"
 
 interface IProps{
-    transactions: []
+    filteredTransactions: []
+    showData: boolean
 }
 
-const CardsTransaction = ({transactions}: IProps)=>{
+const CardsTransaction = ({filteredTransactions, showData}: IProps)=>{
 
     const {user} =  useContext(UserContext)
 
@@ -69,18 +70,25 @@ const CardsTransaction = ({transactions}: IProps)=>{
         return result
     }
 
+    console.log(filteredTransactions)
+
     return(
         <StyledSection>
-            {transactions.map((transaction:ITransaction) => 
-            <StyledDiv>
-                <StyledDivUser>
-                    <StyledUserName>{verifyReceiverName(transaction)}</StyledUserName>
-                    <StyledUserEmail>{verifyReceiverEmail(transaction)}</StyledUserEmail>
-                </StyledDivUser>
- 
-                <StyledDivAmount>
-                    <h5>{convertAmount(transaction)}</h5>
-                </StyledDivAmount>
+            {filteredTransactions?.map((transaction:ITransaction, index:number) => 
+            <StyledDiv key={`${transaction}${index}`}>
+                {showData && 
+                    <>
+                        <StyledDivUser>
+                            <StyledUserName>{verifyReceiverName(transaction)}</StyledUserName>
+                            <StyledUserEmail>{verifyReceiverEmail(transaction)}</StyledUserEmail>
+                        </StyledDivUser>
+        
+                        <StyledDivAmount>
+                            <h5>{convertAmount(transaction)}</h5>
+                        </StyledDivAmount>
+                    </>
+                }
+                
             </StyledDiv>)}
         </StyledSection>
     )

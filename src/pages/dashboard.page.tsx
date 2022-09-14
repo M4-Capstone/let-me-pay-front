@@ -15,6 +15,7 @@ const Dashboard = () => {
   const { setUser } = useContext(UserContext)
   const [showData, setShowData] = useState(false)
   const [transactions, setTransactions] = useState<[]>([])
+  const [filteredTransactions, setFilteredTransactions] = useState<[]>([...transactions])
 
   useEffect(()=>{
     api.get("/history", {
@@ -23,7 +24,7 @@ const Dashboard = () => {
       }})
       .then((res) => {
         setTransactions(res.data)
-        console.log(res.data)
+        setFilteredTransactions(res.data)
 
         setTimeout(()=>{
           setShowData(true)
@@ -76,9 +77,9 @@ const Dashboard = () => {
 
         <StyledSection>
 
-          <FilterTransaction/>
+          <FilterTransaction transactions={transactions} setFilteredTransactions={setFilteredTransactions}/>
 
-          <CardsTransaction transactions={transactions}/>
+          <CardsTransaction filteredTransactions={filteredTransactions} showData={showData}/>
           
         </StyledSection>
 
