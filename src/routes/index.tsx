@@ -15,7 +15,7 @@ const Routes = () => {
     
     if(token){
 
-      const verified = isJwtExpired(token)
+      const verified = isJwtExpired(token) || true;
 
       if(!verified){
         history.push("/dashboard")
@@ -39,6 +39,10 @@ const Routes = () => {
 
       <Route path="/dashboard">
         <Dashboard />
+      </Route>
+
+      <Route path="*">
+        <Redirect to="/login" />
       </Route>
 
     </Switch>
