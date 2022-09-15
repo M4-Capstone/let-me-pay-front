@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import { IProps } from "../../../../interfaces/interfaces";
 
-type ModalProps = {
+export type ModalProps = {
   display: string;
 };
 

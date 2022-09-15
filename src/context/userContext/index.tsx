@@ -16,6 +16,8 @@ interface IUserContextType {
   keyword: string;
   setKeyword: (newState: string) => void;
   transferSubmit: (e: React.FormEvent) => void;
+  modalTRActionOpen: boolean;
+  setModalTRActionOpen: (value: boolean) => void;
 }
 
 export const UserContext = createContext({} as IUserContextType);
@@ -28,9 +30,12 @@ export const UserProvider = ({ children }: IProps) => {
 
   const [keyword, setKeyword] = useState<string>("");
 
+  const [modalTRActionOpen, setModalTRActionOpen] = useState<boolean>(false);
+
   const transferSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setModalTransaction("none");
+    setModalTRActionOpen(true);
   };
 
   return (
@@ -43,6 +48,8 @@ export const UserProvider = ({ children }: IProps) => {
         modalButton,
         setModalButton,
         keyword,
+        modalTRActionOpen,
+        setModalTRActionOpen,
         setKeyword,
         transferSubmit,
       }}
