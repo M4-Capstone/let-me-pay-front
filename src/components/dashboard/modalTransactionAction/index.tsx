@@ -26,7 +26,7 @@ interface IModalTransactionActionProps {
 }
 
 const ModalTransactionAction: React.FC<IModalTransactionActionProps> = ({ reloadHistory }) => {
-  const { user, keyword, modalButton, modalTRActionOpen, setModalTRActionOpen } = useContext(UserContext);
+  const { user, keyword, setKeyword, modalButton, modalTRActionOpen, setModalTRActionOpen, setModalTransaction } = useContext(UserContext);
   const [receiverData, setReceiverData] = useState<Record<string, any>>({});
   const [inputValue, setInputValue] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +35,7 @@ const ModalTransactionAction: React.FC<IModalTransactionActionProps> = ({ reload
   const modalContent = {
     transfer: (ref: React.MutableRefObject<any>, state: number, setState: (value: number) => void) => (
       <>
-        <p className="recipient"><span>Você está enviando dinheiro para:</span><br/>{receiverData.name || "..."}</p>
+        <p className="recipient"><span>Você está enviando dinheiro para:</span><br/>{receiverData?.name || "..."}</p>
         <hr />
         <div className="inputContainer" onClick={() => ref.current.focus()}>
           <label htmlFor="transferInput">R$</label>
@@ -148,9 +148,15 @@ const ModalTransactionAction: React.FC<IModalTransactionActionProps> = ({ reload
       }
     }).then(({data}) => {
       if (data.length === 0) throw new Error("Usuário não encontrado")
-      else setReceiverData(data[0]);
+      else {
+        if (!data[0]) throw new Error("Usuário não encontrado");
+        else setReceiverData(data[0]);
+      };
     }).catch((error) => {
-        toast.error(error.message)
+        toast.error(error.message);
+        setModalTRActionOpen(false);
+        setModalTransaction("flex");
+        setKeyword("");
     });
     
     function handleESCCloseModalEvent(e: KeyboardEvent) {
