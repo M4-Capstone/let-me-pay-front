@@ -33,6 +33,9 @@ export const DivIcon = styled.div`
     align-self: flex-end;
     margin-right: 20px;
     margin-top: 10px;
+    button{
+        background-color: transparent;
+    }
 `
 
 export const ButtonTransaction = styled.button`

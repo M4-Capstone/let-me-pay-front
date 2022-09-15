@@ -6,12 +6,12 @@ import UserDetails from "../components/dashboard/userDetails";
 import api from "../services/api";
 import { UserContext } from "../context/userContext";
 import FilterTransaction from "../components/dashboard/filterTransaction";
-
 import ModalTransaction from "../components/dashboard/modalTransaction/modal";
-
-
 import CardsTransaction from "../components/dashboard/cardsTransaction";
+
 import ModalTransactionAction from "../components/dashboard/modalTransactionAction";
+
+import { ModalEditContext } from "../context/modalEditContext";
 
 
 const Dashboard = () => {
@@ -63,6 +63,7 @@ const Dashboard = () => {
         }, 1000)
 
       })
+
       .then((res: any) => {
         const indexToOcult = [3, 4, 5, 6, 7, 8];
         const idOcult = res.data.documentId?.split("");
@@ -77,6 +78,7 @@ const Dashboard = () => {
           setShowData(true);
         }, 1000);
       });
+
   }, []);
 
   useEffect(() => {

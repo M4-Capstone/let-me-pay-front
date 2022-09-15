@@ -70,7 +70,6 @@ const CardsTransaction = ({filteredTransactions, showData}: IProps)=>{
         return result
     }
 
-    console.log(filteredTransactions)
 
     return(
         <StyledSection>

@@ -17,6 +17,18 @@ export interface IRegister {
   confPassword?: string;
 }
 
+export interface IEditUser {
+  email?: string;
+  cep?: number;
+  rua?: string;
+  numero?: number;
+  bairro?: string;
+  cidade?: string;
+  uf?: string;
+  password?: string;
+  confPassword?: string;
+}
+
 export interface IUser {
   documentId: string;
   name: string;
