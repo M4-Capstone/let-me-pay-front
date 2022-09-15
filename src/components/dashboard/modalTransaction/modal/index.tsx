@@ -1,41 +1,53 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { UserContext } from "../../../../context/userContext";
 import { FaSearch } from "react-icons/fa";
 import { ModalTransactionStyled } from "./style";
 import {
+  ButtonModalContinuar,
   ButtonModalDeposito,
   ButtonModalSaque,
   ButtonModalTransferencia,
 } from "../buttons";
 
 const ModalTransaction = () => {
-  const { modalTransaction, setModalTransaction, modalButton, transferSubmit } =
+  const { keyword, setKeyword, modalTransaction, setModalTransaction, modalButton, transferSubmit } =
     useContext(UserContext);
+
+  useEffect(() => {
+    function handleESCCloseModalEvent(e: KeyboardEvent) {
+      const keyPressed = e.key;
+      if (keyPressed === "Escape") {
+        setModalTransaction("none");
+      }
+    }
+
+    document.addEventListener("keydown", (e) => handleESCCloseModalEvent(e));
+    return document.removeEventListener("keydown", (e) => handleESCCloseModalEvent(e));
+  }, []);
 
   return (
     <ModalTransactionStyled display={modalTransaction}>
       <div className="container-modal">
         <div className="header-modal">
-          <p>{modalButton}</p>
+          <p>Escolha uma ação:</p>
           <button onClick={() => setModalTransaction("none")}>X</button>
         </div>
 
         <div className="main-modal">
-          <h2>transição</h2>
           <ButtonModalDeposito />
           <ButtonModalSaque />
           <ButtonModalTransferencia />
         </div>
 
-        <div className="footer-modal">
-          <h3> Email/CPF</h3>
+        {modalButton && <div className="footer-modal">
+          {(modalButton === "deposit" || modalButton === "withdraw") ? <ButtonModalContinuar /> : <><h3> Email/CPF</h3>
           <form className="input-modal" onSubmit={(e) => transferSubmit(e)}>
-            <input type="text" />
+            <input type="text" value={keyword} onChange={(e) => setKeyword(e.target.value)} />
             <button type="submit">
               <FaSearch />
             </button>
-          </form>
-        </div>
+          </form></>}
+        </div>}
       </div>
     </ModalTransactionStyled>
   );

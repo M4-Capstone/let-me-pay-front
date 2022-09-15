@@ -14,7 +14,7 @@ const ButtonModalStyle = styled.button`
   color: black;
   font-weight: bold;
 
-  .disabled {
+  &.disabled {
     width: 109px;
     height: 25px;
     background: #c9ffc8;
@@ -25,7 +25,7 @@ const ButtonModalStyle = styled.button`
     font-weight: bold;
   }
 
-  .activated {
+  &.activated {
     width: 109px;
     height: 25px;
     background-color: #94ba93;
@@ -34,6 +34,10 @@ const ButtonModalStyle = styled.button`
     text-transform: uppercase;
     color: white;
     font-weight: bold;
+  }
+
+  &.proceedBtn {
+    width: 100%;
   }
 `;
 

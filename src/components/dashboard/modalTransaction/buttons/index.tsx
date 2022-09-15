@@ -41,3 +41,16 @@ export const ButtonModalTransferencia = () => {
     </ButtonModalStyle>
   );
 };
+
+export const ButtonModalContinuar = () => {
+  const { transferSubmit } = useContext(UserContext);
+
+  return (
+    <ButtonModalStyle
+      className="proceedBtn"
+      onClick={(e) => transferSubmit(e)}
+    >
+      CONTINUAR
+    </ButtonModalStyle>
+  );
+};

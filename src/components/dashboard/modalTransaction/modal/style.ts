@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-type ModalProps = {
+export type ModalProps = {
   display: string;
 };
 
