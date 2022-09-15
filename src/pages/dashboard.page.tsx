@@ -79,7 +79,7 @@ const Dashboard = () => {
         }, 1000);
       });
 
-  }, []);
+  }, [willReload]);
 
   useEffect(() => {
     toast.remove();

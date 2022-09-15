@@ -110,4 +110,11 @@ export const ButtonEnviar = styled.button`
 
   background-color: rgb(var(--secondary-color));
   border-radius: 10px;
+
+  transition: 0.1s;
+
+  &:disabled {
+    cursor: not-allowed;
+    filter: brightness(75%);
+  }
 `;

@@ -29,6 +29,7 @@ const ModalTransactionAction: React.FC<IModalTransactionActionProps> = ({ reload
   const { user, keyword, modalButton, modalTRActionOpen, setModalTRActionOpen } = useContext(UserContext);
   const [receiverData, setReceiverData] = useState<Record<string, any>>({});
   const [inputValue, setInputValue] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef();
 
   const modalContent = {
@@ -112,21 +113,32 @@ const ModalTransactionAction: React.FC<IModalTransactionActionProps> = ({ reload
       }
     }
 
-    await api.post(`transactions/${modalButton}`, reqBody, {
+    const transacionar = api.post(`transactions/${modalButton}`, reqBody, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('@tokenLMP')}`
       }
-    }).then((data) => {
-      toast.success(JSON.parse(data.request.response).message);
-      reloadHistory();
-      setModalTRActionOpen(false);
-    }).catch(error => {
-      if (modalButton === 'transfer' && error.request.status === 403) {
-        toast.error(JSON.parse(error.request.response).message)
-      } else {
-        toast.error("Algo deu errado.")
-      }
     });
+
+    toast.promise(transacionar, {
+      loading: (() => {
+        setIsLoading(true);
+        return "Efetuando transação...";
+      })(),
+      success: ({ data }) => {
+        reloadHistory();
+        setModalTRActionOpen(false);
+        setIsLoading(false);
+        return "Transação bem sucedida 🤓";
+      },
+      error: (error) => {
+        setIsLoading(false);
+        if (modalButton === 'transfer' && error.request.status === 403) {
+          return JSON.parse(error.request.response).message;
+        } else {
+          return "Algo deu errado.";
+        }
+      }
+    })
   }
 
   useEffect(() => {
@@ -161,7 +173,7 @@ const ModalTransactionAction: React.FC<IModalTransactionActionProps> = ({ reload
           <button onClick={() => setModalTRActionOpen(false)}> X </button>
         </Header>
         <MainContent>{modalContent[modalButton as PossibleActions || 'transfer'](inputRef, inputValue, setInputValue)}</MainContent>
-        <Footer><ButtonEnviar onClick={handleSubmitTransfer}>Confirmar</ButtonEnviar></Footer>
+        <Footer><ButtonEnviar disabled={isLoading} onClick={handleSubmitTransfer}>Confirmar</ButtonEnviar></Footer>
       </ModalContainer>
     </ModalTransactionActionContainer>
   )
