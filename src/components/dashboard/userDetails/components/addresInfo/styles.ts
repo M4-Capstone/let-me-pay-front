@@ -46,5 +46,4 @@ export const SecondDivAddress =styled.div`
 export const InfoAddress = styled.h5`
     color: #8A8A8A;
     font-weight: 500;
-    width: 90px;
 `
