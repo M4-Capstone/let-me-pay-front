@@ -36,4 +36,16 @@ const registerSchema = yup.object({
     .required("* este campo é obrigatório"),
 });
 
-export { loginSchema, registerSchema };
+const editUserSchema = yup.object({
+  email: yup.string().email("* email invalido"),
+  cep: yup.string(),
+  rua: yup.string(),
+  numero: yup.string(),
+  bairro: yup.string(),
+  cidade: yup.string(),
+  uf: yup.string(),
+  password: yup.string().notRequired(),
+  confPassword: yup.string().oneOf([yup.ref("password")], "* as senhas devem corresponder"),
+});
+
+export { loginSchema, registerSchema,editUserSchema };

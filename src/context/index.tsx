@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { ModalEditProvider } from "./modalEditContext";
 import { UserProvider } from "./userContext";
 
 type Props = {
@@ -8,7 +9,9 @@ type Props = {
 export const Providers = ({children}:Props)=>{
     return (
         <UserProvider>
-            {children}
+            <ModalEditProvider>
+                {children}
+            </ModalEditProvider>
         </UserProvider>
     )
 }

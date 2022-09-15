@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { IProps } from "../../../../interfaces/interfaces";
 
 type ModalProps = {
   display: string;

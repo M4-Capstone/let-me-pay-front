@@ -6,11 +6,9 @@ import UserDetails from "../components/dashboard/userDetails";
 import api from "../services/api";
 import { UserContext } from "../context/userContext";
 import FilterTransaction from "../components/dashboard/filterTransaction";
-
 import ModalTransaction from "../components/dashboard/modalTransaction/modal";
-
-
 import CardsTransaction from "../components/dashboard/cardsTransaction";
+import { ModalEditContext } from "../context/modalEditContext";
 
 
 const Dashboard = () => {
@@ -57,20 +55,6 @@ const Dashboard = () => {
         }, 1000)
 
       })
-      .then((res) => {
-        const indexToOcult = [3, 4, 5, 6, 7, 8];
-        const idOcult = res.data.documentId?.split("");
-        for (let i = 0; i < indexToOcult.length; i++) {
-          idOcult[indexToOcult[i]] = "*";
-        }
-
-        res.data.idOcult = idOcult;
-        setUser(res.data);
-
-        setTimeout(() => {
-          setShowData(true);
-        }, 1000);
-      });
   }, []);
 
   useEffect(() => {
