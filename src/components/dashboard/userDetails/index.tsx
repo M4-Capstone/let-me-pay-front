@@ -4,7 +4,8 @@ import UserInfo from "./components/userInfo";
 import UserAddress from "./components/addresInfo";
 import { useContext } from "react";
 import { UserContext } from "../../../context/userContext";
-
+import { ModalEditContext } from "../../../context/modalEditContext";
+import EditUser from "../modalEditUser";
 interface IProps {
   showData: boolean;
 }
@@ -12,10 +13,16 @@ interface IProps {
 const UserDetails = ({ showData }: IProps) => {
   const { setModalTransaction } = useContext(UserContext);
 
+  const { showModalEdit, setShowModalEdit } = useContext(ModalEditContext)
+
+  const showModal = () =>{
+    setShowModalEdit(true)
+  }
+
   return (
     <StyledSection>
       <DivIcon>
-        <TbEdit size={30} />
+        <button onClick={()=> showModal()}><TbEdit size={30} /></button>
       </DivIcon>
 
       <UserInfo showData={showData} />
@@ -25,6 +32,8 @@ const UserDetails = ({ showData }: IProps) => {
       <ButtonTransaction onClick={() => setModalTransaction("flex")}>
         TRANSAÇÃO
       </ButtonTransaction>
+
+      {showModalEdit && <EditUser />}
     </StyledSection>
   );
 };
